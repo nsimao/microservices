@@ -1,6 +1,11 @@
-# microservices
+# Microservices
+
 Spring Microservices - Netflix OSS
 
+## Spring Cloud Configuration Server
+
+Configurations are under the follow git repository:
+https://github.com/nsimao/microservices-spring-cloud-config-repo
 
 ## Ports
 
