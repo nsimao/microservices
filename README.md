@@ -16,12 +16,14 @@ https://github.com/nsimao/microservices-spring-cloud-config-repo
 1. Project `spring-cloud-config-server` is configured to read from git repository `https://github.com/nsimao/microservices-spring-cloud-config-repo`
 
 | Configuration | Value |
+| ------------- | ------------- |
 | `server.port` | `8888` |
 | `spring.cloud.config.server.git.uri` | `https://github.com/nsimao/microservices-spring-cloud-config-repo` |
 
 2. Project `limitsservice` is configured to read from spring cloud config server.
 
 | Configuration | Value |
+| ------------- | ------------- |
 | `spring.cloud.config.uri` | `http://localhost:8888` |
 
 > Notice: `8888` is the server port configuration for `spring-cloud-config-server`.
