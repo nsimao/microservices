@@ -3,6 +3,7 @@ package com.nsimao.microservices.currencyconversionservice.controller;
 import com.nsimao.microservices.currencyconversionservice.command.CurrencyConversionCommand;
 import com.nsimao.microservices.currencyconversionservice.command.ExchangeValueCommand;
 import com.nsimao.microservices.currencyconversionservice.proxy.CurrencyExchangeServiceProxy;
+import org.slf4j.Logger;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.inject.Inject;
 import java.math.BigDecimal;
+
+import static org.slf4j.LoggerFactory.getLogger;
 
 /**
  * @author Nelson Simão
@@ -20,6 +23,7 @@ import java.math.BigDecimal;
 public class CurrencyConversionController {
 // ------------------------------ FIELDS ------------------------------
 
+    private final Logger logger = getLogger(getClass());
     private Environment environment;
     private CurrencyExchangeServiceProxy currencyExchangeServiceProxy;
 
@@ -40,6 +44,7 @@ public class CurrencyConversionController {
     @GetMapping("/currency-converter/from/{from}/to/{to}/quantity/{quantity}")
     public CurrencyConversionCommand convertCurrency(@PathVariable String from, @PathVariable String to, @PathVariable BigDecimal quantity) {
         ExchangeValueCommand exchangeValueCommand = currencyExchangeServiceProxy.getExchangeValue(from, to);
+        logger.info("Currency Exchange Service Port {}", exchangeValueCommand.getPort());
         CurrencyConversionCommand currencyConversionCommand = new CurrencyConversionCommand();
         currencyConversionCommand.setQuantity(quantity);
         currencyConversionCommand.setFrom(from);
