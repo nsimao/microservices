@@ -7,6 +7,8 @@ Spring Microservices - Netflix OSS
 
 `Ribbon` - Load Balance.
 
+`Eureka` - Service Discovery.
+
 ## Configurations
 
 ### Spring Cloud Configuration Server
