@@ -2,6 +2,8 @@ package com.nsimao.microservices.currencyexchangeservice.controller;
 
 import com.nsimao.microservices.currencyexchangeservice.command.ExchangeValueCommand;
 import com.nsimao.microservices.currencyexchangeservice.repository.ExchangeValueRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +22,7 @@ public class ExchangeController {
 
     private Environment environment;
     private ExchangeValueRepository exchangeValueRepository;
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 // --------------------- GETTER / SETTER METHODS ---------------------
 
@@ -39,6 +42,9 @@ public class ExchangeController {
     public ExchangeValueCommand getExchangeValue(@PathVariable String from, @PathVariable String to) {
         ExchangeValueCommand exchangeValueCommand = ExchangeValueCommand.mapFrom(exchangeValueRepository.findByFromAndTo(from, to));
         exchangeValueCommand.setPort(getPort());
+
+        logger.info("Currency exchange service response: {}", exchangeValueCommand);
+
         return exchangeValueCommand;
     }
 

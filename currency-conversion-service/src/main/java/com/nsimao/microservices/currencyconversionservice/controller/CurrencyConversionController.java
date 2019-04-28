@@ -44,7 +44,7 @@ public class CurrencyConversionController {
     @GetMapping("/currency-converter/from/{from}/to/{to}/quantity/{quantity}")
     public CurrencyConversionCommand convertCurrency(@PathVariable String from, @PathVariable String to, @PathVariable BigDecimal quantity) {
         ExchangeValueCommand exchangeValueCommand = currencyExchangeServiceProxy.getExchangeValue(from, to);
-        logger.info("Currency Exchange Service Port {}", exchangeValueCommand.getPort());
+        logger.info("Currency exchange service response: {}", exchangeValueCommand);
         CurrencyConversionCommand currencyConversionCommand = new CurrencyConversionCommand();
         currencyConversionCommand.setQuantity(quantity);
         currencyConversionCommand.setFrom(from);
