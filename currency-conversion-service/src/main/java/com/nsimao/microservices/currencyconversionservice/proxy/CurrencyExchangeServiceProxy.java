@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(name = "currency-exchange-service")
 @RibbonClient(name = "currency-exchange-service")
 public interface CurrencyExchangeServiceProxy {
+// -------------------------- OTHER METHODS --------------------------
 
     @GetMapping("/currency-exchange/from/{from}/to/{to}")
     ExchangeValueCommand getExchangeValue(@PathVariable String from, @PathVariable String to);
-
 }
