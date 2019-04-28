@@ -4,10 +4,13 @@ Spring Microservices - Netflix OSS
 
 `Feign` - HTTP client.
 
-
 `Ribbon` - Load Balance.
 
 `Eureka` - Service Discovery.
+
+`Zuul` - API Gateway / Reverse Proxy.
+Pattern: `http://localhost:8765/{application.name}/currency-exchange/from/EUR/to/BRL`
+Example: `http://localhost:8765/currency-exchange-service/currency-exchange/from/EUR/to/BRL`
 
 ## Configurations
 
