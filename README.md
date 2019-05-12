@@ -12,6 +12,8 @@ Spring Microservices - Netflix OSS
 
 `Hystrix` - Fault tolerance, circuit breaker.
 
+`Zipkin`- Distributed tracing system. Good alternative is to executed with `Docker`: `docker run -d -p 9411:9411 openzipkin/zipkin`.
+
 Pattern: `http://localhost:8765/{application.name}/currency-exchange/from/EUR/to/BRL`
 
 Example: `http://localhost:8765/currency-exchange-service/currency-exchange/from/EUR/to/BRL`
@@ -68,4 +70,4 @@ https://github.com/nsimao/microservices-spring-cloud-config-repo
 | Currency Exchange Service | http://localhost:8000/currency-exchange/from/EUR/to/BRL http://localhost:8001/currency-exchange/from/USD/to/BRL |
 | Eureka | http://localhost:8761/ |
 | Zuul - Currency Exchange & Exchange Services | http://localhost:8765/currency-exchange-service/currency-exchange/from/EUR/to/BRL http://localhost:8765/currency-conversion-service/currency-converter/from/USD/to/BRL/quantity/10 |
-| Zipkin | http://localhost:9411/zipkin/ |
+| Zipkin (Docker) | http://localhost:9411/zipkin/ |
