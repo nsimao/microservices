@@ -1,5 +1,6 @@
 package com.nsimao.microservices.currencyexchangeservice.controller;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.nsimao.microservices.currencyexchangeservice.command.ExchangeValueCommand;
 import com.nsimao.microservices.currencyexchangeservice.repository.ExchangeValueRepository;
 import org.slf4j.Logger;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.inject.Inject;
+import java.math.BigDecimal;
 
 /**
  * @author Nelson Simão
@@ -39,6 +41,7 @@ public class ExchangeController {
 // -------------------------- OTHER METHODS --------------------------
 
     @GetMapping("/currency-exchange/from/{from}/to/{to}")
+    @HystrixCommand(fallbackMethod = "getDefaultExchangeValue")
     public ExchangeValueCommand getExchangeValue(@PathVariable String from, @PathVariable String to) {
         ExchangeValueCommand exchangeValueCommand = ExchangeValueCommand.mapFrom(exchangeValueRepository.findByFromAndTo(from, to));
         exchangeValueCommand.setPort(getPort());
@@ -46,6 +49,17 @@ public class ExchangeController {
         logger.info("Currency exchange service response: {}", exchangeValueCommand);
 
         return exchangeValueCommand;
+    }
+
+    private ExchangeValueCommand getDefaultExchangeValue(String from, String to, Throwable t) {
+        logger.error("FallBack getDefaultExchangeValue method executed, exception: {}", t.getMessage(), t);
+
+        ExchangeValueCommand command = new ExchangeValueCommand();
+        command.setFrom(from);
+        command.setTo(to);
+        command.setConversionMultiple(new BigDecimal("0.0"));
+        command.setPort(getPort());
+        return command;
     }
 
     private Integer getPort() {

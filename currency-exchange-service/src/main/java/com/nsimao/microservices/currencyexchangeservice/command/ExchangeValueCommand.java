@@ -21,11 +21,9 @@ public class ExchangeValueCommand {
 
     public static ExchangeValueCommand mapFrom(ExchangeValue exchangeValue) {
         ExchangeValueCommand command = new ExchangeValueCommand();
-        if (exchangeValue != null) {
-            command.setFrom(exchangeValue.getFrom());
-            command.setTo(exchangeValue.getTo());
-            command.setConversionMultiple(exchangeValue.getConversionMultiple());
-        }
+        command.setFrom(exchangeValue.getFrom());
+        command.setTo(exchangeValue.getTo());
+        command.setConversionMultiple(exchangeValue.getConversionMultiple());
         return command;
     }
 
