@@ -12,13 +12,13 @@ Spring Microservices - Netflix OSS
 
 `Hystrix` - Fault tolerance, circuit breaker.
 
-`Zipkin`- Distributed tracing system. Good alternative is to executed with `Docker`: `docker run -d -p 9411:9411 openzipkin/zipkin`.
-
 Pattern: `http://localhost:8765/{application.name}/currency-exchange/from/EUR/to/BRL`
 
 Example: `http://localhost:8765/currency-exchange-service/currency-exchange/from/EUR/to/BRL`
 
 `Sleuth` - Tracing.
+
+`Zipkin`- Distributed tracing system. Good alternative is to executed with `Docker`: `docker run -d -p 9411:9411 openzipkin/zipkin`.
 
 ## Configurations
 
