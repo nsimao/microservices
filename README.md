@@ -10,7 +10,7 @@ Spring Microservices - Netflix OSS
 
 `Zuul` - API Gateway / Reverse Proxy.
 
-Pattern: `http://localhost:8765/{application.name}/currency-exchange/from/EUR/to/BRL`
+Pattern: `http://{zuul.url}/{application.name}/{endpoint}`
 
 Example: `http://localhost:8765/currency-exchange-service/currency-exchange/from/EUR/to/BRL`
 
